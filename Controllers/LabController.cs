@@ -18,7 +18,12 @@ namespace LAB001.Controllers
         {
             _logger = logger;
         }
-
+        [HttpGet(Name = "Version")]
+        public String Version()
+        {
+            return "V13";
+        }
+        
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
