@@ -4,7 +4,7 @@ pipeline {
       APPNAME  =  "lab001"
       IMAGE  =  "lab001"
       VERSION  =  11
-      REGISTRY  ="achoto"
+      REGISTRY  ="andreachoto@gmail.com"
       DOCKER_HUB_LOGIN  =  credentials('dockerhub-achoto')
   }
   stages  {
