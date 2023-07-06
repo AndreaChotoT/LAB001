@@ -4,7 +4,7 @@ pipeline {
       APPNAME  =  "lab001"
       IMAGE  =  "lab001"
       PORT  =  "8080"
-      VERSION  =  10
+      VERSION  =  13
       REGISTRY  ="achoto"
       DOCKER_HUB_LOGIN  =  credentials('dockerhub-achoto')
   }
