@@ -3,7 +3,7 @@ pipeline {
   environment  {
       APPNAME  =  "lab001"
       IMAGE  =  "lab001"
-      VERSION  =  11
+      VERSION  =  10
       REGISTRY  ="achoto"
       DOCKER_HUB_LOGIN  =  credentials('dockerhub-achoto')
   }
