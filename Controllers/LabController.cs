@@ -23,7 +23,7 @@ namespace LAB001.Controllers
         [Route("Version")]
         public String Version()
         {
-            return "V13";
+            return "V14";
         }
         
         [HttpGet(Name = "GetWeatherForecast")]
