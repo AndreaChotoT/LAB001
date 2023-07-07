@@ -3,7 +3,7 @@ pipeline {
   environment  {
       APPNAME  =  "lab001"
       IMAGE  =  "lab001"
-      PORT  =  "8080"
+      PORT  =  "8091"
       VERSION  =  14
       REGISTRY  ="achoto"
       DOCKER_HUB_LOGIN  =  credentials('dockerhub-achoto')
@@ -25,7 +25,7 @@ pipeline {
       steps  {
         sh  'docker stop $APPNAME'
         sh  'docker rm $APPNAME'
-        sh  'docker run -d --name $APPNAME -p $PORT 80 $REGISTRY/$IMAGE:$VERSION'
+        sh  'docker run -d --name $APPNAME -p $PORT:80 $REGISTRY/$IMAGE:$VERSION'
       }
     }    
   }
