@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace LAB001.Controllers
+namespace Lab01.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -18,20 +17,36 @@ namespace LAB001.Controllers
         {
             _logger = logger;
         }
-        
+
+
         [HttpGet()]
         [Route("Version")]
         public String Version()
         {
             return "V15";
         }
-        
+
+        [HttpGet()]
+        [Route("HostId")]
+        public String HostId()
+        {
+            return System.Net.Dns.GetHostName() + "\n";
+        }
+
+        [Route("GetEnv")]
+        public string GetEnv(string key)
+        {
+            return key + "=" +
+                (Environment.GetEnvironmentVariable(key) ?? "") + "\n";
+            
+        }
+
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
-                Date = DateTime.Now.AddDays(index),
+                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
@@ -42,26 +57,27 @@ namespace LAB001.Controllers
         public string AddHistory()
         {
             _logger.LogInformation("AddHistory");
-            try {
+
+            try
+            {
                 var path = "/var/Lab/logs";
 
-                if (!Directory.Exists(path)) {
+                if (!Directory.Exists(path))
+                {
                     Directory.CreateDirectory(path);
                 }
 
-                var file = $"{path}/{DateTime.Now.ToString("dd+Myyyy_HH_mm_ss")}.log";
-                System.IO.File.WriteAllText(file,"Log de pruebas");
-                return "ok";
+                var file = $"{path}/{DateTime.Now.ToString("ddMMyyyy_HH_mm_ss")}.log";
+
+                System.IO.File.WriteAllText(file, "Log de pruebas");
+
+                return "OK";
             }
-            catch (Exception ex){
-                _logger.LogError(ex,"Error en AddHistory");
-                return "Error";
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error en AddHistory");
+                return "ERROR";
             }
-            
         }
-
-
-
-
     }
 }
